@@ -410,7 +410,7 @@ public class WebViewActivity extends AppCompatActivity {
             String url = request.getUrl().toString();
             if (TextUtils.isEmpty(url)) {
                 return false;
-            } else if (url.startsWith("https://www.52pojie.cn/connect.php?mod=login&op=init&referer=https%3A%2F%2Fwww.52pojie.cn%2F&statfrom=login")) {
+            } else if (url.startsWith("https://www.hostloc.com/connect.php?mod=login&op=init&referer=forum.php&statfrom=login_simple")) {
                 ToastUtilsKt.showMessage(R.string.qq_not_support);
                 return true;
             } else if (url.startsWith("wtloginmqq://ptlogin/qlogin")) {

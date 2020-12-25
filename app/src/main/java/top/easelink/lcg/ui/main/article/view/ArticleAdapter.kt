@@ -162,7 +162,7 @@ class ArticleAdapter(
                     post_avatar.load(p.avatar) {
                         lifecycle(mFragment)
                         transformations(RoundedCornersTransformation(4.dpToPx(context)))
-                        error(R.drawable.ic_noavatar_middle_gray)
+                        error(R.drawable.ic_avatar_m_2)
                     }
                     content_text_view.run {
                         if (AppConfig.articleHandlePreTag) {
@@ -294,7 +294,7 @@ class ArticleAdapter(
                         reply_avatar.load(p.avatar) {
                             crossfade(true)
                             transformations(RoundedCornersTransformation(6.dpToPx(context)))
-                            placeholder(R.drawable.ic_avatar_placeholder)
+                            placeholder(R.drawable.ic_avatar_m_2)
                             error(getAvatar())
                         }
                         reply_content_text_view.run {

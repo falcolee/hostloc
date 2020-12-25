@@ -5,20 +5,14 @@ import android.content.Context
 import com.tencent.bugly.Bugly
 import com.tencent.bugly.beta.Beta
 import com.tencent.stat.StatService
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 import top.easelink.framework.guard.AppGuardStarter
 import top.easelink.framework.log.ErrorReportTree
-import top.easelink.framework.threadpool.BackGroundPool
 import top.easelink.lcg.BuildConfig
 import top.easelink.lcg.R
-import top.easelink.lcg.config.AppConfig
 import top.easelink.lcg.event.EVENT_APP_LAUNCH
 import top.easelink.lcg.event.sendEvent
-import top.easelink.lcg.service.work.SignInWorker
 
 
 class LCGApp : Application() {
@@ -34,18 +28,6 @@ class LCGApp : Application() {
         initBulgy()
         initMTA()
         AppGuardStarter.init(this)
-        trySignIn()
-    }
-
-    private fun trySignIn() = GlobalScope.launch(BackGroundPool) {
-        if (AppConfig.autoSignEnable) {
-            delay(2000)
-            try {
-                SignInWorker.sendSignInRequest()
-            } catch (e: Exception) {
-                Timber.e(e)
-            }
-        }
     }
 
     private fun initBulgy() {
@@ -53,8 +35,8 @@ class LCGApp : Application() {
             applicationContext,
             BuildConfig.BUGLY_APP_ID, false
         )
-        Beta.largeIconId = R.drawable.ic_noavatar_middle
-        Beta.smallIconId = R.drawable.ic_noavatar_middle
+        Beta.largeIconId = R.drawable.ic_avatar_m_1
+        Beta.smallIconId = R.drawable.ic_avatar_m_1
         Beta.enableHotfix = false
     }
 

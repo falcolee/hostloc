@@ -504,10 +504,6 @@ object ArticlesRemoteDataSource : ArticlesDataSource, FavoritesRemoteDataSource 
         val imgElements = element.getElementsByTag("img")
         for (i in imgElements.indices) {
             val imgElement = imgElements[i]
-            val src = imgElement.attr("src")
-            if (src.contains("https://static.52pojie.cn/static/") && !src.contains("none")) {
-                imgElement.remove()
-            }
             val attr = imgElement.attr("file")
             if (!TextUtils.isEmpty(attr)) {
                 imgElement.attr("src", attr)

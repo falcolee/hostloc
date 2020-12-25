@@ -2,10 +2,8 @@ package top.easelink.lcg.ui.setting.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.work.WorkManager
 import top.easelink.lcg.config.AppConfig
 import top.easelink.lcg.event.*
-import top.easelink.lcg.service.work.SignInWorker
 import java.util.*
 
 class SettingViewModel : ViewModel() {
@@ -27,18 +25,6 @@ class SettingViewModel : ViewModel() {
             showRecommendFlag.value = articleShowRecommendFlag
             handlePreTagInArticle.value = articleHandlePreTag
         }
-    }
-
-    fun scheduleJob(enable: Boolean) {
-        AppConfig.autoSignEnable = enable
-        if (enable) {
-            SignInWorker.startSignInWork()
-        } else {
-            WorkManager.getInstance().cancelAllWorkByTag(SignInWorker.TAG)
-        }
-        sendKVEvent(EVENT_AUTO_SIGN, Properties().apply {
-            setProperty(PROP_IS_AUTO_SIGN_ENABLE, enable.toString())
-        })
     }
 
     fun setSyncFavorite(enable: Boolean) {

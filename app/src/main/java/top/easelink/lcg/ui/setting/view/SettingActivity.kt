@@ -87,7 +87,7 @@ class SettingActivity : TopActivity() {
             Beta.checkUpgrade()
         }
         sync_favorites_switch.setOnCheckedChangeListener { _, isChecked ->
-            mViewModel.scheduleJob(isChecked)
+            
         }
         auto_sign_switch.setOnCheckedChangeListener { _, isChecked ->
             mViewModel.setSyncFavorite(isChecked)
