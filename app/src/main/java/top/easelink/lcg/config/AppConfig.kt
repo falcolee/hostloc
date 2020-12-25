@@ -34,10 +34,6 @@ object AppConfig {
         return "enable" == StatConfig.getCustomProperty(CONFIG_ENABLE_FOLLOW_REDIRECTS, "enable")
     }
 
-    fun getJrsUrl(): String {
-        return StatConfig.getCustomProperty(CONFIG_JRS_URL, "http://www.jrskq.com/")
-    }
-
     // open search result method, true -> WebView false -> try parse to native
     var searchResultShowInWebView: Boolean
         get() = get(CONFIG_SEARCH_OPEN_RESULT_IN_WEBVIEW, false)
@@ -59,7 +55,7 @@ object AppConfig {
     var defaultSearchEngine: Int
         get() = get(
             CONFIG_DEFAULT_SEARCH_ENGINE,
-            if (UserDataRepo.isLoggedIn) CONFIG_SEARCH_ENGINE_WUAI else CONFIG_SEARCH_ENGINE_BAIDU
+            if (UserDataRepo.isLoggedIn) CONFIG_SEARCH_ENGINE_WUAI else CONFIG_SEARCH_ENGINE_WUAI
         )
         set(value) = put(CONFIG_DEFAULT_SEARCH_ENGINE, value)
 

@@ -23,10 +23,9 @@ public class RecommendViewPagerAdapter extends FragmentPagerAdapter {
         super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         tabModels = new ArrayList<>();
         tabModels.add(new TabModel(context.getString(R.string.tab_title_hot), "hot"));
-        tabModels.add(new TabModel(context.getString(R.string.tab_title_tech), "tech"));
+        tabModels.add(new TabModel(context.getString(R.string.tab_title_sofa), "newthread"));
+        tabModels.add(new TabModel(context.getString(R.string.tab_title_new_thread), "sofa"));
         tabModels.add(new TabModel(context.getString(R.string.tab_title_digest), "digest"));
-        tabModels.add(new TabModel(context.getString(R.string.tab_title_new_thread), "newthread"));
-        tabModels.add(new TabModel(context.getString(R.string.tab_title_help), "help"));
     }
 
     @Override

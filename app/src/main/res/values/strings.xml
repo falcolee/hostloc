@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">吾爱破解</string>
+    <string name="app_name">Hostloc</string>
     <string name="todo_tips">未完成的功能</string>
     <string name="login_required_error">请求页面失败，请确认是否登陆</string>
     <string name="error">请求页面失败，请稍后再试</string>
@@ -48,15 +48,14 @@
     <string name="setting">『应用设置』</string>
     <string name="about">『关于应用』</string>
     <string name="thread_about_app">『App发布页』</string>
-    <string name="open_portal_page">『吾爱网页版』</string>
+    <string name="open_portal_page">『Hostloc网页版』</string>
     <string name="open_jrs_page">『JRS看球』</string>
 
     <!--home fragment-->
     <string name="tab_title_hot">人气热门</string>
-    <string name="tab_title_tech">技术分享</string>
     <string name="tab_title_new_thread">新鲜出炉</string>
+    <string name="tab_title_sofa">抢沙发</string>
     <string name="tab_title_digest">精华采撷</string>
-    <string name="tab_title_help">求助新帖</string>
     <string name="help_request_solved">解</string>
     <string name="my_post">我</string>
     <string name="app_exit_tip">再按一次退出应用</string>
@@ -209,13 +208,17 @@
     <string name="forum_virus_rescue">病毒救援</string>
     <string name="free_chat_title">水漫金山</string>
     <string name="welfare_title">福利经验</string>
-
+    <!--hostloc grid-->
+    <string name="forum_us_vps">美国VPS综合讨论</string>
+    <string name="forum_ganhuo">干货茶馆</string>
+    <string name="forum_offers">Offers专区</string>
+    <string name="forum_domains">域名讨论专区</string>
     <!-- setting -->
     <string name="setting_title">设置</string>
 
     <!--block-->
     <string name="not_found_info">抱歉，文章可能已经被删除了</string>
-    <string name="block_info">抱歉，本帖要求阅读权限高于 10 才能浏览</string>
+    <string name="block_info">抱歉，本帖要求阅读权限才能浏览</string>
     <string name="preview_loading">加载中，请稍候</string>
     <string name="preview_fail_info">预览失败，请检查阅读权限</string>
     <string name="preview_fail_info_post_deleted">帖子违规，已被管理员删除</string>

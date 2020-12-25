@@ -10,14 +10,20 @@ object WebsiteConstant {
     const val EXTRA_TABLE_HTML = "EXTRA_TABLE_HTML"
 
 
-    const val SERVER_BASE_URL = "https://www.52pojie.cn/"
+    const val SERVER_BASE_URL = "https://www.hostloc.com/"
     const val FORUM_BASE_QUERY = "forum.php?mod=guide&view="
     const val BAIDU_SEARCH_BASE_URL = "http://zhannei.baidu.com/cse/"
-    const val SEARCH_QUERY = "http://zhannei.baidu.com/cse/site?q=%s&click=1&cc=52pojie.cn&s=&nsid="
+    //%E4%BA%BA%E6%B0%94
+    const val SEARCH_QUERY = "http://zhannei.baidu.com/cse/site?q=%s&click=1&cc=hostloc.com&s=&nsid="
     const val FREE_CHAT_QUERY = "forum-10-1.html"
     const val WELFARE_QUERY = "forum-66-1.html"
     const val MOB_SECURITY_QUERY = "forum-65-%d.html"
     const val SOFTWARE_QUERY = "forum-16-%d.html"
+
+    const val USVPS_QUERY = "forum-45-%d.html"
+    const val GANHUO_QUERY = "forum-86-%d.html"
+    const val OFFERS_QUERY = "forum-77-%d.html"
+    const val DOMAINS_QUERY = "forum-21-%d.html"
 
     // map all forum url to this template so that can add order parameter
     const val FORUM_URL_QUERY = "forum.php?mod=forumdisplay&fid=%s"

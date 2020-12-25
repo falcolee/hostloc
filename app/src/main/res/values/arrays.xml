@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="search_engine_array">
-        <item>吾爱破解</item>
+        <item>Hostloc</item>
         <item>百度站内</item>
     </string-array>
 
