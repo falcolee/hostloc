@@ -16,7 +16,7 @@ class LoginViewModel : ViewModel() {
     @JavascriptInterface
     fun parseHtml(html: String) {
         Jsoup.parse(html).apply {
-            val otpUrl = getElementById("vseccode_cS").selectFirst("[width=130]").attr("src")
+            //val otpUrl = getElementById("vseccode_cS").selectFirst("[width=130]").attr("src")
         }
 
     }

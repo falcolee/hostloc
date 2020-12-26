@@ -13,10 +13,6 @@ object UserDataRepo {
         get() = get(SP_KEY_USER_GROUP, "")
         set(value) = put(SP_KEY_USER_GROUP, value)
 
-    var coin: String
-        get() = get(SP_KEY_USER_COIN, "")
-        set(value) = put(SP_KEY_USER_COIN, value)
-
     var credit: String
         get() = get(SP_KEY_USER_CREDIT, "")
         set(value) = put(SP_KEY_USER_CREDIT, value)
@@ -25,20 +21,13 @@ object UserDataRepo {
         get() = get(SP_KEY_USER_ENTHUSIASTIC, "")
         set(value) = put(SP_KEY_USER_ENTHUSIASTIC, value)
 
-    var answerRate: String
-        get() = get(SP_KEY_USER_ANSWER_RATE, "")
-        set(value) = put(SP_KEY_USER_ANSWER_RATE, value)
+    var hostCoin: String
+        get() = get(SP_KEY_USER_COIN, "")
+        set(value) = put(SP_KEY_USER_COIN, value)
 
     var username: String
         get() = get(SP_KEY_USER_NAME, "")
         set(value) = put(SP_KEY_USER_NAME, value)
-
-    var signInState: String
-        get() = get(SP_KEY_SIGN_IN_STATE, "")
-        set(value) {
-            put(SP_KEY_SIGN_IN_STATE, value)
-            AccountManager.isSignedToday.postValue(true)
-        }
 
     var isLoggedIn: Boolean
         get() = get(SP_KEY_LOGGED_IN, false)
@@ -51,12 +40,10 @@ object UserDataRepo {
         UserDataRepo.apply {
             username = userInfo.userName.toString()
             avatar = userInfo.avatarUrl.orEmpty()
-            coin = userInfo.wuaiCoin.orEmpty()
             credit = userInfo.credit.orEmpty()
             group = userInfo.groupInfo.orEmpty()
             enthusiasticValue = userInfo.enthusiasticValue.orEmpty()
-            answerRate = userInfo.answerRate.orEmpty()
-            signInState = userInfo.signInStateUrl.orEmpty()
+            hostCoin = userInfo.hostCoin.orEmpty()
         }
         AccountManager.userInfo.postValue(userInfo)
     }

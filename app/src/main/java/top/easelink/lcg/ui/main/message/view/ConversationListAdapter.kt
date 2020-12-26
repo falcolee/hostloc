@@ -92,7 +92,7 @@ class ConversationListAdapter(
                 conversation.avatar?.let {
                     conversation_user_avatar.load(it) {
                         transformations(RoundedCornersTransformation(2.dpToPx(context)))
-                        error(R.drawable.ic_noavatar_middle_gray)
+                        error(R.drawable.ic_avatar_m_5)
                     }
                 }
                 last_message.text = conversation.lastMessage

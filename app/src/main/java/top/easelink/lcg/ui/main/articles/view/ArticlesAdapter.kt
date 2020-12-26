@@ -146,29 +146,6 @@ class ArticlesAdapter(
                         setText(context.getString(R.string.my_post))
                         reDraw()
                     }
-                } else {
-                    when (article.helpCoin) {
-                        0 -> stamp.visibility = View.GONE
-                        -1 -> stamp.apply {
-                            setDrawSpotEnable(true)
-                            setStampColor(ContextCompat.getColor(context, R.color.light_gray))
-                            setText(context.getString(R.string.help_request_solved))
-                            visibility = View.VISIBLE
-                            reDraw()
-                        }
-                        else -> stamp.apply {
-                            stamp.setDrawSpotEnable(true)
-                            stamp.setStampColor(
-                                ContextCompat.getColor(
-                                    context,
-                                    R.color.colorAccent
-                                )
-                            )
-                            stamp.setText(article.helpCoin.toString())
-                            stamp.visibility = View.VISIBLE
-                            stamp.reDraw()
-                        }
-                    }
                 }
             }
         }

@@ -9,8 +9,6 @@ object AccountManager {
 
     val isLoggedIn = MutableLiveData(UserDataRepo.isLoggedIn)
 
-    val isSignedToday = MutableLiveData(UserDataRepo.signInState.isNotEmpty())
-
     val userInfo = MutableLiveData<UserInfo>()
 
 }

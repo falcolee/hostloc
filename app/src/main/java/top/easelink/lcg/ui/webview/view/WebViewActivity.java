@@ -150,7 +150,7 @@ public class WebViewActivity extends AppCompatActivity {
                     @JavascriptInterface
                     public void processHtml(String html) {
                         try {
-                            Element element = Jsoup.parse(html).selectFirst("div.avt");
+                            Element element = Jsoup.parse(html).selectFirst("a.dialog");
                             if (element != null) {
                                 mWebView.post(() -> {
                                     ToastUtilsKt.showMessage(R.string.login_successfully);
