@@ -12,7 +12,7 @@ def versionPatch = 7
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "top.xiaogouxo.lcg"
+        applicationId "top.xiaogouxo.hostloc"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode versionMajor * 10000 + versionMinor * 100 + versionPatch

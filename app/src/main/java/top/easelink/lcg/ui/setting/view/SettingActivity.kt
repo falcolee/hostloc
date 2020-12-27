@@ -8,7 +8,6 @@ import android.view.WindowManager
 import android.widget.AdapterView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.tencent.bugly.beta.Beta
 import kotlinx.android.synthetic.main.activity_settings.*
 import top.easelink.framework.topbase.TopActivity
 import top.easelink.lcg.R
@@ -17,7 +16,6 @@ import top.easelink.lcg.account.UserDataRepo
 import top.easelink.lcg.ui.main.login.view.LoginHintDialog
 import top.easelink.lcg.ui.main.logout.view.LogoutHintDialog
 import top.easelink.lcg.ui.setting.viewmodel.SettingViewModel
-import top.easelink.lcg.utils.clearCookies
 import top.easelink.lcg.utils.showMessage
 
 
@@ -83,7 +81,6 @@ class SettingActivity : TopActivity() {
             }
         }
         check_update_btn.setOnClickListener {
-            Beta.checkUpgrade()
         }
         sync_favorites_switch.setOnCheckedChangeListener { _, isChecked ->
             

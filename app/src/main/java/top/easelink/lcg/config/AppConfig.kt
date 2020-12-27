@@ -2,7 +2,6 @@ package top.easelink.lcg.config
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.tencent.stat.StatConfig
 import top.easelink.lcg.appinit.LCGApp
 import top.easelink.lcg.account.UserDataRepo
 
@@ -10,9 +9,6 @@ object AppConfig {
 
     private const val CONFIG_SP = "config_sp"
 
-    private const val CONFIG_APP_RELEASE_URL = "app_release_page"
-    private const val CONFIG_JRS_URL = "jrs_page"
-    private const val CONFIG_ENABLE_FOLLOW_REDIRECTS = "follow_redirects"
     private const val CONFIG_SEARCH_OPEN_RESULT_IN_WEBVIEW = "open_result_in_webview"
     private const val CONFIG_ARTICLE_HANDLE_PRE_TAG = "handle_pre_tag_in_article"
     private const val CONFIG_ARTICLE_IN_WEBVIEW = "open_article_in_webview"
@@ -23,15 +19,15 @@ object AppConfig {
 
 
     private const val CONFIG_SEARCH_ENGINE_BAIDU = 1
-    private const val CONFIG_SEARCH_ENGINE_WUAI = 0
+    private const val CONFIG_SEARCH_ENGINE_HOSTLOC = 0
 
     // Config from Remote
     fun getAppReleaseUrl(): String {
-        return StatConfig.getCustomProperty(CONFIG_APP_RELEASE_URL, "thread-1073834-1-1.html")
+        return "https://github.com/xiaogouxo/hostloc"
     }
 
     fun followRedirectsEnable(): Boolean {
-        return "enable" == StatConfig.getCustomProperty(CONFIG_ENABLE_FOLLOW_REDIRECTS, "enable")
+        return true
     }
 
     // open search result method, true -> WebView false -> try parse to native
@@ -55,7 +51,7 @@ object AppConfig {
     var defaultSearchEngine: Int
         get() = get(
             CONFIG_DEFAULT_SEARCH_ENGINE,
-            if (UserDataRepo.isLoggedIn) CONFIG_SEARCH_ENGINE_WUAI else CONFIG_SEARCH_ENGINE_WUAI
+            CONFIG_SEARCH_ENGINE_HOSTLOC
         )
         set(value) = put(CONFIG_DEFAULT_SEARCH_ENGINE, value)
 
