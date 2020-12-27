@@ -23,12 +23,10 @@ class MeViewModel : ViewModel() {
                 UserInfo(
                     userName = UserDataRepo.username,
                     avatarUrl = UserDataRepo.avatar,
-                    wuaiCoin = UserDataRepo.coin,
+                    hostCoin = UserDataRepo.hostCoin,
                     credit = UserDataRepo.credit,
                     groupInfo = UserDataRepo.group,
                     enthusiasticValue = UserDataRepo.enthusiasticValue,
-                    answerRate = UserDataRepo.answerRate,
-                    signInStateUrl = null
                 )
             )
         }

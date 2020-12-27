@@ -96,7 +96,7 @@ object JsoupClient : ApiRequest {
         form: MutableMap<String, String>?
     ): Connection.Response {
         return Jsoup
-            .connect(url)
+            .connect(url).timeout(TIME_OUT_LIMIT)
             .cookies(getCookies())
             .apply {
                 if (form != null) {

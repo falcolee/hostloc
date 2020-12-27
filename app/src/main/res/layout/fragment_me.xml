@@ -31,7 +31,7 @@
             app:layout_constraintTop_toTopOf="@id/me_user_name"
             app:layout_constraintBottom_toBottomOf="@id/me_user_group"
             app:layout_constraintStart_toStartOf="parent"
-            tools:src="@drawable/ic_noavatar_middle_gray"
+            tools:src="@drawable/ic_avatar_m_5"
             />
 
         <TextView
@@ -92,7 +92,7 @@
             android:id="@+id/icon_group"
             android:layout_width="@dimen/dp_0"
             android:layout_height="@dimen/dp_0"
-            app:constraint_referenced_ids="me_anwser_rate,me_anwser_rate_icon, me_wuaicoin, me_coin_icon, me_credit, me_credit_icon, me_enthusiastic, me_enthusiastic_icon"
+            app:constraint_referenced_ids="me_anwser_rate,me_anwser_rate_icon, me_wuaicoin, me_coin_icon, me_credit, me_credit_icon"
             />
 
         <ImageView
@@ -117,7 +117,7 @@
             android:textColor="@color/gray"
             android:textSize="@dimen/sp_12"
             android:hint="@string/me_tab_placeholder"
-            tools:text="吾爱币：1115CB"
+            tools:text="金钱：1115"
             app:layout_constraintTop_toTopOf="@id/me_coin_icon"
             app:layout_constraintBottom_toBottomOf="@id/me_coin_icon"
             app:layout_constraintStart_toEndOf="@id/me_coin_icon"
@@ -161,7 +161,7 @@
             android:layout_height="@dimen/dp_20"
             android:scaleType="fitCenter"
             android:layout_marginTop="@dimen/dp_15"
-            android:src="@drawable/ic_anwser_rate"
+            android:src="@drawable/ic_heart"
             app:layout_constraintTop_toBottomOf="@id/me_coin_icon"
             app:layout_constraintStart_toStartOf="@id/me_coin_icon"
             app:tint="@color/pojie_logo"
@@ -177,40 +177,10 @@
             android:maxWidth="@dimen/dp_80"
             android:layout_marginStart="@dimen/dp_8"
             android:hint="@string/me_tab_placeholder"
-            tools:text="采纳率：10%"
+            tools:text="威望：10"
             app:layout_constraintTop_toTopOf="@id/me_anwser_rate_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/me_anwser_rate_icon"
-            />
-
-        <ImageView
-            android:padding="@dimen/dp_3"
-            android:id="@+id/me_enthusiastic_icon"
-            android:layout_width="@dimen/dp_20"
-            android:layout_height="@dimen/dp_20"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_heart"
-            android:layout_marginStart="@dimen/dp_130"
-            app:layout_constraintTop_toTopOf="@id/me_anwser_rate_icon"
-            app:layout_constraintBottom_toBottomOf="@id/me_anwser_rate_icon"
-            app:layout_constraintStart_toEndOf="@id/me_anwser_rate_icon"
-            app:tint="@color/pojie_logo"
-            android:contentDescription="@null" />
-
-
-        <TextView
-            android:gravity="center_vertical|start"
-            android:id="@+id/me_enthusiastic"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/sp_12"
-            android:layout_marginStart="@dimen/dp_8"
-            android:hint="@string/me_tab_placeholder"
-            tools:text="热心值：100点"
-            app:layout_constraintTop_toTopOf="@id/me_enthusiastic_icon"
-            app:layout_constraintBottom_toBottomOf="@id/me_enthusiastic_icon"
-            app:layout_constraintStart_toEndOf="@id/me_enthusiastic_icon"
             />
 
 

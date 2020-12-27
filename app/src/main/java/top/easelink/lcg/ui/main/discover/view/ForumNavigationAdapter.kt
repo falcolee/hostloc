@@ -39,11 +39,11 @@ class ForumNavigationAdapter : RecyclerView.Adapter<BaseViewHolder>() {
                     R.layout.item_forums_grid, parent, false
                 )
             )
-            VIEW_TYPE_LOAD_MORE -> LoadMoreViewHolder(
-                LayoutInflater.from(parent.context).inflate(
-                    R.layout.item_forums_grid, parent, false
-                )
-            )
+//            VIEW_TYPE_LOAD_MORE -> LoadMoreViewHolder(
+//                LayoutInflater.from(parent.context).inflate(
+//                    R.layout.item_forums_grid, parent, false
+//                )
+//            )
             else -> throw IllegalStateException()
         }
     }

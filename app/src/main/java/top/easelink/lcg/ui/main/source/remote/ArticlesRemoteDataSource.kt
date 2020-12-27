@@ -206,22 +206,6 @@ object ArticlesRemoteDataSource : ArticlesDataSource, FavoritesRemoteDataSource 
                         val date = extractFrom(e, "td.by", "span")
                         val url = extractAttrFrom(e, "href", "th.common", "a.xst")
                         val origin = e.selectFirst("td.by > a[target]")?.text().orEmpty()
-                        val helpInfo = e.select("th.common > span.xi1 > span.xw1")?.text().orEmpty()
-                        var helpCoin = 0
-                        if (helpInfo.isEmpty()) {
-                            if (e.selectFirst("th.common")
-                                    ?.text()
-                                    ?.contains("- [已解决]") == true
-                            ) {
-                                helpCoin = -1
-                            }
-                        } else {
-                            helpCoin = try {
-                                helpInfo.toInt()
-                            } catch (e: Exception) {
-                                0
-                            }
-                        }
                         val isRecommended = if (AppConfig.articleShowRecommendFlag) {
                             e.selectFirst("th.common")
                                 ?.getElementsByTag("img")
@@ -255,7 +239,6 @@ object ArticlesRemoteDataSource : ArticlesDataSource, FavoritesRemoteDataSource 
                                 view,
                                 reply,
                                 origin,
-                                helpCoin,
                                 isRecommended
                             )
                         }
@@ -504,10 +487,6 @@ object ArticlesRemoteDataSource : ArticlesDataSource, FavoritesRemoteDataSource 
         val imgElements = element.getElementsByTag("img")
         for (i in imgElements.indices) {
             val imgElement = imgElements[i]
-            val src = imgElement.attr("src")
-            if (src.contains("https://static.52pojie.cn/static/") && !src.contains("none")) {
-                imgElement.remove()
-            }
             val attr = imgElement.attr("file")
             if (!TextUtils.isEmpty(attr)) {
                 imgElement.attr("src", attr)

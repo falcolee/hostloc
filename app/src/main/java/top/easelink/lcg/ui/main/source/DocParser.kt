@@ -28,7 +28,7 @@ fun parseExtraUserInfoProfilePage(content: String): List<ExtraUserInfo> {
 @Throws(NullPointerException::class, AntiScrapingException::class)
 fun parseUserInfo(doc: Document): UserInfo {
     with(doc) {
-        val userName = doc.selectFirst("h2.mt")?.text()
+        val userName = doc.selectFirst("h2.name")?.text()
         when {
             userName.isNullOrEmpty() -> {
                 val message = getElementById("messagetext")?.text()
@@ -43,28 +43,20 @@ fun parseUserInfo(doc: Document): UserInfo {
                 return UserInfo.getDefaultUserInfo()
             }
             else -> {
-                val avatar = selectFirst("div.avt > a > img")?.attr("src")
-                val groupInfo = getElementById("g_upmine")?.text()
+                val avatar = selectFirst("div.avatar_m > span > img")?.attr("src")
                 val infoList =
-                    getElementById("psts").selectFirst("ul.pf_l").getElementsByTag("li").also {
+                    selectFirst("div.user_box ul").getElementsByTag("li").also {
                         it.forEach { il ->
-                            il.selectFirst("em").appendText(" : ")
+                            il.selectFirst("span")
                         }
                     }
-                val signInState = select("img.qq_bind")
-                    ?.firstOrNull {
-                        !(it.attr("src")?.contains("qq") ?: true)
-                    }
-                    ?.attr("src")
                 return UserInfo(
                     userName = userName,
                     avatarUrl = avatar,
-                    groupInfo = groupInfo,
-                    wuaiCoin = infoList[3].text(),
-                    credit = infoList[1].text(),
-                    answerRate = infoList[6].text(),
-                    enthusiasticValue = infoList[7].text(),
-                    signInStateUrl = signInState
+                    groupInfo = "",
+                    credit = infoList[0].text(),
+                    hostCoin = infoList[2].data(),
+                    enthusiasticValue = infoList[1].text(),
                 )
             }
         }

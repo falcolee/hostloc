@@ -2,10 +2,8 @@ package top.easelink.lcg.ui.setting.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.work.WorkManager
 import top.easelink.lcg.config.AppConfig
 import top.easelink.lcg.event.*
-import top.easelink.lcg.service.work.SignInWorker
 import java.util.*
 
 class SettingViewModel : ViewModel() {

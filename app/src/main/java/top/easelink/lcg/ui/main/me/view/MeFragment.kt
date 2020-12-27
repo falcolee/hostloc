@@ -87,29 +87,9 @@ class MeFragment : TopFragment(), ControllableFragment {
         AccountManager.userInfo.observe(viewLifecycleOwner) { info ->
             me_user_name.text = info.userName
             me_user_group.text = info.groupInfo
-            me_wuaicoin.text = info.wuaiCoin
-            me_anwser_rate.text = info.answerRate
+            me_wuaicoin.text = info.hostCoin
+            me_anwser_rate.text = info.enthusiasticValue
             me_credit.text = info.credit
-            me_enthusiastic.text = info.enthusiasticValue
-            info.signInStateUrl?.let { url ->
-                me_sign_in_state.visibility = View.VISIBLE
-                ImageRequest.Builder(me_sign_in_state.context)
-                    .data(url)
-                    .allowRgb565(true)
-                    .lifecycle(this@MeFragment)
-                    .target {
-                        me_sign_in_state.apply {
-                            layoutParams.width = it.intrinsicWidth / it.intrinsicHeight * height
-                            setImageDrawable(it)
-                        }
-                    }
-                    .build()
-                    .let { request ->
-                        Coil.imageLoader(me_sign_in_state.context).enqueue(request)
-                    }
-            } ?: run {
-                me_sign_in_state.visibility = View.GONE
-            }
             info.avatarUrl?.let {
                 me_user_avatar.load(it) {
                     lifecycle(viewLifecycleOwner)

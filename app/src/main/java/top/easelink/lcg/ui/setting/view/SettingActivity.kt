@@ -69,7 +69,6 @@ class SettingActivity : TopActivity() {
     private fun setupComponents() {
         if (!UserDataRepo.isLoggedIn) {
             sync_favorites_switch.isEnabled = false
-            auto_sign_switch.isEnabled = false
             AppConfig.autoSignEnable = false
             AppConfig.syncFavorites = false
             account_btn.text = getString(R.string.login_btn)
@@ -87,10 +86,7 @@ class SettingActivity : TopActivity() {
             Beta.checkUpgrade()
         }
         sync_favorites_switch.setOnCheckedChangeListener { _, isChecked ->
-            mViewModel.scheduleJob(isChecked)
-        }
-        auto_sign_switch.setOnCheckedChangeListener { _, isChecked ->
-            mViewModel.setSyncFavorite(isChecked)
+            
         }
         search_engine_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -124,9 +120,6 @@ class SettingActivity : TopActivity() {
     private fun setupObserver() {
         mViewModel.syncFavoriteEnable.observe(this, Observer {
             sync_favorites_switch.isChecked = it
-        })
-        mViewModel.autoSignInEnable.observe(this, Observer {
-            auto_sign_switch.isChecked = it
         })
         mViewModel.searchEngineSelected.observe(this, Observer {
             search_engine_spinner.setSelection(it, true)
