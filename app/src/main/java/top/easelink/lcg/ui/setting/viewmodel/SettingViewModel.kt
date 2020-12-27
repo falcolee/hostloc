@@ -29,18 +29,6 @@ class SettingViewModel : ViewModel() {
         }
     }
 
-    fun scheduleJob(enable: Boolean) {
-        AppConfig.autoSignEnable = enable
-        if (enable) {
-            SignInWorker.startSignInWork()
-        } else {
-            WorkManager.getInstance().cancelAllWorkByTag(SignInWorker.TAG)
-        }
-        sendKVEvent(EVENT_AUTO_SIGN, Properties().apply {
-            setProperty(PROP_IS_AUTO_SIGN_ENABLE, enable.toString())
-        })
-    }
-
     fun setSyncFavorite(enable: Boolean) {
         AppConfig.syncFavorites = enable
         sendKVEvent(EVENT_SYNC_FAVORITE, Properties().apply {
