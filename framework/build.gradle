@@ -90,20 +90,11 @@ dependencies {
     api "androidx.room:room-ktx:$rootProject.roomVersion"
     // event-bus
     api "org.greenrobot:eventbus:$rootProject.eventbusVersion"
-    // bugly
-    api "com.tencent.bugly:crashreport_upgrade:$rootProject.buglyVersion"
-
     // kotlin
 
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutineVersion"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutineVersion"
-
-    // mta qq
-    //MTA主包
-    api "com.qq.mta:mta:$rootProject.mtaVersion"
-    //MID基础包
-    api "com.tencent.mid:mid:$rootProject.midVersion"
 
     // test related
     // java script engine

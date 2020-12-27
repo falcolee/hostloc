@@ -2,7 +2,7 @@
 try {
     apply from: "config.gradle"
 } catch (Exception ignored) {
-    System.out.print("config_placeholder.gradleolder.gradle contains mta/bugly/keystore")
+    System.out.print("config_placeholder.gradleolder.gradle contains keystore")
     apply from: "config_placeholder.gradle"
 }
 apply from: "dependencies.gradle"
