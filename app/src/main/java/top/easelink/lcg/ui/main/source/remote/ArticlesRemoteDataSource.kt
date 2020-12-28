@@ -406,10 +406,10 @@ object ArticlesRemoteDataSource : ArticlesDataSource, FavoritesRemoteDataSource 
                 userInfoMap[FOLLOW_URL] = it.attr("href")
                 userInfoMap[FOLLOW_TITLE] = it.attr("title")
             }
-            userInfoMap[USER_GROUP] = element.selectFirst("div.favatar > p").text()
+            userInfoMap[USER_GROUP] = element.selectFirst("div.favatar > p")?.text().toString()
             userInfoMap[USER_EXTRA_INFO] = element.getElementsByTag("dl").outerHtml()
             userInfoMap[USER_NAME] = element.select("a.xw1").text()
-            userInfoMap[USER_ONLINE] = element.select("div.y > div > em").text()
+            userInfoMap[USER_ONLINE] = element.select("div.y > div > em")?.text().toString()
             list.add(userInfoMap)
         }
         return list
