@@ -14,6 +14,10 @@ data class PopUpProfileInfo(
     val imageUrl: String,
     @SerializedName("username")
     val userName: String,
+    @SerializedName("group")
+    val group: String,
+    @SerializedName("online")
+    val online: String?,
     @SerializedName("extra_user_info")
     val extraUserInfo: String?,
     @SerializedName("follow_info")

@@ -71,6 +71,11 @@
         <item name="android:textColor">@color/semi_gray</item>
     </style>
 
+    <style name="TextStyle.Title.Tiny" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:textSize">@dimen/sp_10</item>
+        <item name="android:textColor">@color/semi_gray</item>
+    </style>
+
     <style name="TextStyle.Heading" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="android:textSize">@dimen/sp_16</item>
     </style>

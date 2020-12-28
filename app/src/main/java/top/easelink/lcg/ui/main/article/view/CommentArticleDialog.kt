@@ -80,7 +80,8 @@ class CommentArticleDialog : TopDialog() {
                         UserDataRepo.username,
                         UserDataRepo.avatar,
                         CommonUtils.getCurrentDate(),
-                        content, null, null
+                        content,
+                        UserDataRepo.group,null,null,null, null
                     )
                 )
             }

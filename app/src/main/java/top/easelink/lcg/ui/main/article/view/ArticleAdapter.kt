@@ -145,9 +145,11 @@ class ArticleAdapter(
                                     location[1],
                                     p.avatar,
                                     p.author,
+                                    p.group,
+                                    p.online,
                                     p.extraInfo,
                                     p.followInfo,
-                                    p.profileUrl
+                                    p.profileUrl,
                                 )
                                 PopUpProfileDialog.newInstance(popUpInfo).show(
                                     it,
@@ -196,6 +198,14 @@ class ArticleAdapter(
                         } else {
                             post_btn_reply.visibility = View.VISIBLE
                             post_btn_reply.setOnClickListener(this@PostViewHolder)
+                        }
+                        if (TextUtils.isEmpty(p.sign) || p.sign=="null") {
+                            sign_line.visibility = View.GONE
+                            sign_text_view.visibility = View.GONE
+                        } else {
+                            sign_line.visibility = View.VISIBLE
+                            sign_text_view.visibility = View.VISIBLE
+                            sign_text_view.text = p.sign
                         }
                         if (TextUtils.isEmpty(p.replyAddUrl)) {
                             post_btn_thumb_up.visibility = View.GONE
@@ -278,6 +288,8 @@ class ArticleAdapter(
                                         location[1],
                                         p.avatar,
                                         p.author,
+                                        p.group,
+                                        p.online,
                                         p.extraInfo,
                                         p.followInfo,
                                         p.profileUrl
@@ -335,6 +347,14 @@ class ArticleAdapter(
                             } else {
                                 reply_btn_thumb_up.visibility = View.VISIBLE
                                 reply_btn_thumb_up.setOnClickListener(this@ReplyViewHolder)
+                            }
+                            if (TextUtils.isEmpty(p.sign) || p.sign=="null") {
+                                reply_sign_line.visibility = View.GONE
+                                reply_sign_text_view.visibility = View.GONE
+                            } else {
+                                reply_sign_line.visibility = View.VISIBLE
+                                reply_sign_text_view.visibility = View.VISIBLE
+                                reply_sign_text_view.text = p.sign
                             }
                             reply_btn_copy.setOnClickListener(this@ReplyViewHolder)
                         } else {

@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -71,6 +72,12 @@ class PopUpProfileDialog: DialogFragment() {
                 }
             }
         username.text = popUpInfo.userName
+        group_text_view.text = popUpInfo.group
+        if (TextUtils.isEmpty(popUpInfo.online)) {
+            online_text_view.visibility = View.GONE
+        } else {
+            online_text_view.text = popUpInfo.online
+        }
         popUpInfo.followInfo?.let { info ->
             subscribe_btn.visibility = View.VISIBLE
             subscribe_btn.text = info.first

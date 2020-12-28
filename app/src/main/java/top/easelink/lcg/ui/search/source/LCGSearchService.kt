@@ -10,6 +10,7 @@ import top.easelink.lcg.ui.search.model.LCGSearchResults
 import top.easelink.lcg.utils.WebsiteConstant
 import top.easelink.lcg.utils.showMessage
 import java.net.SocketTimeoutException
+import java.net.URLEncoder
 
 /**
  * author : junzhang
@@ -31,29 +32,17 @@ object LCGSearchService {
             return emptyResult()
         }
         try {
-
-            val url = "${WebsiteConstant.SERVER_BASE_URL}search.php?searchsubmit=yes"
-            val form = ArrayMap<String, String>().apply {
-                put("formhash", JsoupClient.formHash)
-                put("mod", "forum")
-                put("srchtype", "title")
-                put("srhfid", "")
-                put("srhlocality", "forum::index")
-                put("srchtxt", keyword)
-                put("searchsubmit", "true")
+            val formhash = JsoupClient.formHash
+            var searchUrl = "search.php?mod=forum&srchtxt=%s&formhash=%s&searchsubmit=true"
+            var searchdoc = JsoupClient.sendGetRequestWithQuery(searchUrl.format(URLEncoder.encode(keyword, "utf-8"),formhash))
+            val result = parseSearchResults(searchdoc)
+            try {
+                mTotalResults = searchdoc.selectFirst("h2").text()
+                result.totalResult = mTotalResults
+            } catch (e: Exception) {
+                Timber.w(e)
             }
-            val response = JsoupClient.sendPostRequestWithUrl(url, form)
-            if (response.statusCode() in 200..299) {
-                val doc = response.parse()
-                val result = parseSearchResults(doc)
-                try {
-                    mTotalResults = doc.selectFirst("h2").text()
-                    result.totalResult = mTotalResults
-                } catch (e: Exception) {
-                    Timber.w(e)
-                }
-                return result
-            }
+            return result
         } catch (e: Exception) {
             Timber.e(e)
         }

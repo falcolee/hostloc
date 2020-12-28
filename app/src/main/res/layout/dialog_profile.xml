@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:contentDescription="@null"
-        tools:src="@drawable/ic_noavatar_middle"/>
+        tools:src="@drawable/ic_avatar_m_2"/>
 
     <TextView
         android:id="@+id/username"
@@ -29,6 +29,28 @@
         app:layout_constraintTop_toTopOf="@id/profile_avatar"
         tools:text="author"
         />
+
+    <TextView
+        android:id="@+id/online_text_view"
+        style="@style/TextStyle.Title.Sub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_5"
+        app:layout_constraintStart_toEndOf="@id/username"
+        app:layout_constraintTop_toTopOf="@id/profile_avatar"
+        tools:text="online" />
+
+    <TextView
+        android:id="@+id/group_text_view"
+        style="@style/TextStyle.Title.Sub"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_marginStart="@dimen/dp_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/username"
+        app:layout_constraintStart_toEndOf="@id/profile_avatar"
+        tools:text="游客"/>
 
     <GridView
         android:id="@+id/extra_info_grid"
@@ -74,4 +96,5 @@
             android:textSize="@dimen/sp_12"
             android:layout_margin="@dimen/dp_6" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

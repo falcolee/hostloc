@@ -14,6 +14,7 @@ import top.easelink.lcg.ui.main.model.NewMessageEvent
 import top.easelink.lcg.ui.main.model.NotificationInfo
 import top.easelink.lcg.ui.profile.model.ExtraUserInfo
 import top.easelink.lcg.utils.showMessage
+import kotlin.jvm.Throws
 
 @WorkerThread
 fun parseExtraUserInfoProfilePage(content: String): List<ExtraUserInfo> {
@@ -28,7 +29,7 @@ fun parseExtraUserInfoProfilePage(content: String): List<ExtraUserInfo> {
 @Throws(NullPointerException::class, AntiScrapingException::class)
 fun parseUserInfo(doc: Document): UserInfo {
     with(doc) {
-        val userName = doc.selectFirst("h2.name")?.text()
+        val userName = doc.selectFirst("a.xw1")?.text()
         when {
             userName.isNullOrEmpty() -> {
                 val message = getElementById("messagetext")?.text()
@@ -43,20 +44,21 @@ fun parseUserInfo(doc: Document): UserInfo {
                 return UserInfo.getDefaultUserInfo()
             }
             else -> {
-                val avatar = selectFirst("div.avatar_m > span > img")?.attr("src")
+                val avatar = selectFirst("a.avtm > img")?.attr("src")
+                val groupInfo = selectFirst("span.xi2 > a")?.text()
                 val infoList =
-                    selectFirst("div.user_box ul").getElementsByTag("li").also {
+                    getElementById("psts").selectFirst("ul.pf_l").getElementsByTag("li").also {
                         it.forEach { il ->
-                            il.selectFirst("span")
+                            il.selectFirst("em").appendText(" : ")
                         }
                     }
                 return UserInfo(
                     userName = userName,
                     avatarUrl = avatar,
-                    groupInfo = "",
-                    credit = infoList[0].text(),
-                    hostCoin = infoList[2].data(),
-                    enthusiasticValue = infoList[1].text(),
+                    groupInfo = groupInfo,
+                    credit = infoList[1].text(),
+                    hostCoin = infoList[3].text(),
+                    enthusiasticValue = infoList[2].text(),
                 )
             }
         }

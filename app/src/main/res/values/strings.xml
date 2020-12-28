@@ -87,7 +87,7 @@
     <string name="ic_history">阅读记录</string>
     <string name="ic_notifications">消息提醒</string>
     <string name="ic_feedback">问题反馈</string>
-    <string name="ic_follow">我的收听</string>
+    <string name="ic_follow">我的关注</string>
     <string name="ic_favorite">我的收藏</string>
     <string name="ic_my_articles">我的帖子</string>
 
@@ -106,9 +106,9 @@
     <string name="clear_cookie">本地信息已清除</string>
 
     <!-- Profile Dialog   -->
-    <string name="subscribe_btn">收听TA</string>
+    <string name="subscribe_btn">关注TA</string>
     <string name="open_profile_btn">查看TA</string>
-    <string name="subscribe_failed">收听失败，请尝试从网站操作</string>
+    <string name="subscribe_failed">关注失败，请尝试从网站操作</string>
 
     <!--Notification-->
     <string name="notification_arrival">有新的消息</string>
@@ -143,10 +143,10 @@
 
     <!--follow fragment-->
     <string name="tab_title_following_feed">广播动态</string>
-    <string name="tab_title_following">我的收听</string>
+    <string name="tab_title_following">我的关注</string>
     <string name="tab_title_subscriber">我的听众</string>
-    <string name="follower_num_template">听众 %d 人</string>
-    <string name="following_num_template">收听 %d 人</string>
+    <string name="follower_num_template">粉丝 %d 人</string>
+    <string name="following_num_template">关注 %d 人</string>
     <string name="following_feed_open_original_content">查看原文</string>
 
     <!--download link dialog-->

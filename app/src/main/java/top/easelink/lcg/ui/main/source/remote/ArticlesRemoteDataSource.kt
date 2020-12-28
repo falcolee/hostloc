@@ -35,6 +35,8 @@ import java.util.*
 object ArticlesRemoteDataSource : ArticlesDataSource, FavoritesRemoteDataSource {
     private const val USER_NAME = "name"
     private const val USER_AVATAR = "avatar"
+    private const val USER_GROUP = "group"
+    private const val USER_ONLINE = "online"
     private const val USER_PROFILE_URL = "profile_url"
     private const val USER_EXTRA_INFO = "extra_info"
     private const val FOLLOW_URL = "follow_url"
@@ -120,6 +122,7 @@ object ArticlesRemoteDataSource : ArticlesDataSource, FavoritesRemoteDataSource 
             }
             val dateTimes = getDateTime(doc)
             val replyUrls = getReplyUrls(doc)
+            var signs = getSign(doc)
             val postList: MutableList<Post> = ArrayList(userInfos.size)
             for (i in userInfos.indices) {
                 try {
@@ -133,11 +136,19 @@ object ArticlesRemoteDataSource : ArticlesDataSource, FavoritesRemoteDataSource 
                     } else {
                         replyUrls[i]
                     }
+                    val signature: String? = if (i >= signs.size) {
+                        null
+                    } else {
+                        signs[i]
+                    }
                     val post = Post(
                         author = userInfos[i][USER_NAME].toString(),
                         avatar = userInfos[i][USER_AVATAR].toString(),
+                        group = userInfos[i][USER_GROUP].toString(),
+                        online = userInfos[i][USER_ONLINE].toString(),
                         date = dateTimes[i],
                         content = contents[i],
+                        sign = signature,
                         replyUrl = replyUrl,
                         replyAddUrl = replyAddUrl,
                         profileUrl = userInfos[i][USER_PROFILE_URL].toString(),
@@ -395,8 +406,10 @@ object ArticlesRemoteDataSource : ArticlesDataSource, FavoritesRemoteDataSource 
                 userInfoMap[FOLLOW_URL] = it.attr("href")
                 userInfoMap[FOLLOW_TITLE] = it.attr("title")
             }
+            userInfoMap[USER_GROUP] = element.selectFirst("div.favatar > p").text()
             userInfoMap[USER_EXTRA_INFO] = element.getElementsByTag("dl").outerHtml()
             userInfoMap[USER_NAME] = element.select("a.xw1").text()
+            userInfoMap[USER_ONLINE] = element.select("div.y > div > em").text()
             list.add(userInfoMap)
         }
         return list
@@ -406,6 +419,14 @@ object ArticlesRemoteDataSource : ArticlesDataSource, FavoritesRemoteDataSource 
         return document.select("div.authi").select("em").map {
             it.text()
         }
+    }
+
+    private fun getSign(document:Document): List<String> {
+        return document
+            .select("td.plm")
+            .map {
+                it.selectFirst("div.sign")?.text().toString()
+            }
     }
 
     @Throws(BlockException::class)
