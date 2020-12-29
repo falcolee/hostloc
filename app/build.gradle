@@ -89,7 +89,6 @@ dependencies {
     kapt "androidx.room:room-compiler:$roomVersion"
     implementation project(':framework')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     debugImplementation "com.amitshekhar.android:debug-db:1.0.4"
     // test related
     testImplementation "junit:junit:$rootProject.junitVersion"

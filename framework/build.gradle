@@ -92,7 +92,8 @@ dependencies {
     api "org.greenrobot:eventbus:$rootProject.eventbusVersion"
     // bugly
     api "com.tencent.bugly:crashreport_upgrade:$rootProject.buglyVersion"
-    api "com.tencent.tinker:tinker-android-lib:$rootProject.buglyTinkerVersion"
+    api "com.tencent.bugly:nativecrashreport:$rootProject.buglyNativeVersion"
+    // kotlin
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutineVersion"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutineVersion"

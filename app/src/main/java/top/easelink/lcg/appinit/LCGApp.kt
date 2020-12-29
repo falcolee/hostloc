@@ -22,17 +22,19 @@ class LCGApp : Application() {
         } else {
             Timber.plant(ErrorReportTree())
         }
+        initBulgy()
         AppGuardStarter.init(this)
     }
 
     private fun initBulgy() {
         Bugly.init(
             applicationContext,
-            BuildConfig.BUGLY_APP_ID, false
+            BuildConfig.BUGLY_APP_ID, true
         )
         Beta.largeIconId = R.drawable.ic_launcher_foreground
         Beta.smallIconId = R.drawable.ic_launcher_foreground
         Beta.enableHotfix = false
+        Beta.autoCheckUpgrade = true;
     }
 
     companion object {
