@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:contentDescription="@null"
-        tools:src="@drawable/ic_avatar_m_2"/>
+        tools:src="@drawable/ic_launcher_foreground"/>
 
     <TextView
         android:id="@+id/author_text_view"

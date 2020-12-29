@@ -117,9 +117,9 @@
     <!--about fragment-->
     <string name="version">"version"</string>
     <string name="github_title">Github源码地址</string>
-    <string name="github_url">https://github.com/fabricezhang/lcg/</string>
+    <string name="github_url">https://github.com/xiaogouxo/hostloc</string>
     <string name="author_title">问题反馈邮箱</string>
-    <string name="author_email">fabrice@163.com</string>
+    <string name="author_email">skylzl001@163.com</string>
 
     <!--favorite fragment-->
     <string name="empty_favorite">收藏夹目前是空的。</string>
@@ -230,5 +230,6 @@
     <string name="permission_denied">未授权，部分功能可能无法使用</string>
 
     <!--extras-->
-    <string name="jrs_sport">看球直播』</string>
+    <string name="update_info_failed">获取更新信息失败</string>
+    <string name="has_new_update">发现新版本</string>
 </resources>

@@ -5,6 +5,8 @@ static String releaseTime() {
 ext {
     releaseTime = releaseTime()
 
+    BUGLY_APP_ID = "\"4d70f8d349\""
+
     RELEASE_KEY_ALIAS = "placeholder"
     RELEASE_KEY_PWD = "placeholder"
     RELEASE_KEY_STORE_PWD = "placeholder"

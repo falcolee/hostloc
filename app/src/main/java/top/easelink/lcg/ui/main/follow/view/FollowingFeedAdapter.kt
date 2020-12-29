@@ -116,7 +116,7 @@ class FollowingFeedAdapter(
                         avatar.visibility = View.VISIBLE
                         avatar.load(it) {
                             transformations(RoundedCornersTransformation(round))
-                            error(R.drawable.ic_avatar_m_5)
+                            error(R.drawable.ic_launcher_foreground)
                             crossfade(true)
                         }
                     } else {

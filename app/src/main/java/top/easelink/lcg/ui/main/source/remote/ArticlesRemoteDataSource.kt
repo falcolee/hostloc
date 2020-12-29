@@ -144,8 +144,8 @@ object ArticlesRemoteDataSource : ArticlesDataSource, FavoritesRemoteDataSource 
                     val post = Post(
                         author = userInfos[i][USER_NAME].toString(),
                         avatar = userInfos[i][USER_AVATAR].toString(),
-                        group = userInfos[i][USER_GROUP].toString(),
-                        online = userInfos[i][USER_ONLINE].toString(),
+                        group = userInfos[i][USER_GROUP]?:"",
+                        online = userInfos[i][USER_ONLINE]?:"",
                         date = dateTimes[i],
                         content = contents[i],
                         sign = signature,
@@ -406,10 +406,14 @@ object ArticlesRemoteDataSource : ArticlesDataSource, FavoritesRemoteDataSource 
                 userInfoMap[FOLLOW_URL] = it.attr("href")
                 userInfoMap[FOLLOW_TITLE] = it.attr("title")
             }
-            userInfoMap[USER_GROUP] = element.selectFirst("div.favatar > p")?.text().toString()
             userInfoMap[USER_EXTRA_INFO] = element.getElementsByTag("dl").outerHtml()
             userInfoMap[USER_NAME] = element.select("a.xw1").text()
-            userInfoMap[USER_ONLINE] = element.select("div.y > div > em")?.text().toString()
+            element.selectFirst("div.y > div > em")?.let {
+                userInfoMap[USER_ONLINE] = it.text()
+            }
+            element.selectFirst("div.favatar > p")?.let {
+                userInfoMap[USER_GROUP] = it.text()
+            }
             list.add(userInfoMap)
         }
         return list
@@ -425,7 +429,7 @@ object ArticlesRemoteDataSource : ArticlesDataSource, FavoritesRemoteDataSource 
         return document
             .select("td.plm")
             .map {
-                it.selectFirst("div.sign")?.text().toString()
+                it.selectFirst("div.sign")?.text().orEmpty()
             }
     }
 

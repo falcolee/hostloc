@@ -16,6 +16,7 @@ import org.greenrobot.eventbus.ThreadMode
 import top.easelink.framework.topbase.ControllableFragment
 import top.easelink.framework.topbase.TopFragment
 import top.easelink.lcg.R
+import top.easelink.lcg.account.UserDataRepo
 import top.easelink.lcg.ui.main.article.view.DownloadLinkDialog.Companion.newInstance
 import top.easelink.lcg.ui.main.article.view.ReplyPostDialog.Companion.newInstance
 import top.easelink.lcg.ui.main.article.view.ScreenCaptureDialog.Companion.TAG
@@ -115,17 +116,17 @@ class ArticleFragment: TopFragment(), ControllableFragment {
             )
 
             viewModel.posts.observe(viewLifecycleOwner) {
-                val url = it[0].replyUrl
-                if (it.size > 0 && url != null) {
-                    comment.apply {
-                        visibility = View.VISIBLE
-                    }.setOnClickListener {
-                        val dialog = CommentArticleDialog.newInstance(url)
-                        dialog.setTargetFragment(this@ArticleFragment, REPLY_POST_RESULT)
-                        dialog.show(if (isAdded) parentFragmentManager else childFragmentManager)
+                if (UserDataRepo.isLoggedIn) {
+                    val url = it[0].replyUrl
+                    if (it.size > 0 && url != null) {
+                        comment.apply {
+                            visibility = View.VISIBLE
+                        }.setOnClickListener {
+                            val dialog = CommentArticleDialog.newInstance(url)
+                            dialog.setTargetFragment(this@ArticleFragment, REPLY_POST_RESULT)
+                            dialog.show(if (isAdded) parentFragmentManager else childFragmentManager)
+                        }
                     }
-                } else {
-                    comment.visibility = View.GONE
                 }
                 (adapter as? ArticleAdapter)?.run {
                     clearItems()

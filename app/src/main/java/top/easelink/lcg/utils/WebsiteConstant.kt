@@ -9,7 +9,6 @@ object WebsiteConstant {
     const val URL_KEY = "URL_KEY"
     const val EXTRA_TABLE_HTML = "EXTRA_TABLE_HTML"
 
-
     const val SERVER_BASE_URL = "https://www.hostloc.com/"
     const val FORUM_BASE_QUERY = "forum.php?mod=guide&view="
     const val BAIDU_SEARCH_BASE_URL = "http://zhannei.baidu.com/cse/"

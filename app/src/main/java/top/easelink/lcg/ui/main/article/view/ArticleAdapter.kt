@@ -129,98 +129,101 @@ class ArticleAdapter(
         private val htmlHttpImageGetter: Html.ImageGetter = HtmlCoilImageGetter(view.context, view.content_text_view, mFragment)
 
         override fun onBind(position: Int) {
-            val p = mPostList.getOrNull(position) ?: return
+            post = mPostList[position]
             with(itemView) {
-                try {
-                    author_text_view.text = p.author
-                    date_text_view.text = getDateDiff(p.date)
-                    post_avatar.setOnClickListener { _ ->
-                        mFragment.runCatching { parentFragmentManager }
-                            .getOrNull()
-                            ?.let {
-                                val location = IntArray(2)
-                                post_avatar.getLocationInWindow(location)
-                                val popUpInfo = PopUpProfileInfo(
-                                    location[0],
-                                    location[1],
-                                    p.avatar,
-                                    p.author,
-                                    p.group,
-                                    p.online,
-                                    p.extraInfo,
-                                    p.followInfo,
-                                    p.profileUrl,
-                                )
-                                PopUpProfileDialog.newInstance(popUpInfo).show(
-                                    it,
-                                    PopUpProfileDialog::class.java.simpleName
-                                )
-                            }
-                            ?: context.startActivity(
-                                Intent(context, ProfileActivity::class.java).also {
-                                    it.putExtra(KEY_PROFILE_URL, p.profileUrl)
+                post?.let { p ->
+                    try {
+                        author_text_view.text = p.author
+                        date_text_view.text = getDateDiff(p.date)
+                        post_avatar.setOnClickListener { _ ->
+                            mFragment.runCatching { parentFragmentManager }
+                                .getOrNull()
+                                ?.let {
+                                    val location = IntArray(2)
+                                    post_avatar.getLocationInWindow(location)
+                                    val popUpInfo = PopUpProfileInfo(
+                                        location[0],
+
+                                        location[1],
+                                        p.avatar,
+                                        p.author,
+                                        p.group,
+                                        p.online,
+                                        p.extraInfo,
+                                        p.followInfo,
+                                        p.profileUrl,
+                                    )
+                                    PopUpProfileDialog.newInstance(popUpInfo).show(
+                                        it,
+                                        PopUpProfileDialog::class.java.simpleName
+                                    )
+                                }
+                                ?: context.startActivity(
+                                    Intent(context, ProfileActivity::class.java).also {
+                                        it.putExtra(KEY_PROFILE_URL, p.profileUrl)
+                                    })
+                        }
+                        post_avatar.load(p.avatar) {
+                            lifecycle(mFragment)
+                            transformations(RoundedCornersTransformation(4.dpToPx(context)))
+                            error(R.drawable.ic_launcher_foreground)
+                        }
+                        content_text_view.run {
+                            if (AppConfig.articleHandlePreTag) {
+                                setClickablePreCodeSpan(ClickablePreCodeSpanImpl())
+                                setDrawPreCodeSpan(DrawPreCodeSpan().apply {
+                                    tableLinkText = context.getString(R.string.tap_for_code)
                                 })
-                    }
-                    post_avatar.load(p.avatar) {
-                        lifecycle(mFragment)
-                        transformations(RoundedCornersTransformation(4.dpToPx(context)))
-                        error(R.drawable.ic_avatar_m_2)
-                    }
-                    content_text_view.run {
-                        if (AppConfig.articleHandlePreTag) {
-                            setClickablePreCodeSpan(ClickablePreCodeSpanImpl())
-                            setDrawPreCodeSpan(DrawPreCodeSpan().apply {
-                                tableLinkText = context.getString(R.string.tap_for_code)
-                            })
-                        } else {
-                            setClickablePreCodeSpan(null)
-                            setDrawPreCodeSpan(null)
-                        }
-                        setImageTagClickListener { _: Context, imageUrl: String, _: Int ->
-                            EventBus.getDefault().post(OpenLargeImageViewEvent(imageUrl))
-                        }
-                        setOnLinkTagClickListener { c: Context?, url: String ->
-                            if (url.startsWith(SERVER_BASE_URL + "thread")) {
-                                EventBus.getDefault()
-                                    .post(OpenArticleEvent(url.substring(SERVER_BASE_URL.length)))
                             } else {
-                                WebViewActivity.startWebViewWith(url, c)
+                                setClickablePreCodeSpan(null)
+                                setDrawPreCodeSpan(null)
                             }
+                            setImageTagClickListener { _: Context, imageUrl: String, _: Int ->
+                                EventBus.getDefault().post(OpenLargeImageViewEvent(imageUrl))
+                            }
+                            setOnLinkTagClickListener { c: Context?, url: String ->
+                                if (url.startsWith(SERVER_BASE_URL + "thread")) {
+                                    EventBus.getDefault()
+                                        .post(OpenArticleEvent(url.substring(SERVER_BASE_URL.length)))
+                                } else {
+                                    WebViewActivity.startWebViewWith(url, c)
+                                }
+                            }
+                            setHtml(p.content, htmlHttpImageGetter)
                         }
-                        setHtml(p.content, htmlHttpImageGetter)
-                    }
-                    post_btn_capture.visibility = View.VISIBLE
-                    post_btn_capture.setOnClickListener(this@PostViewHolder)
-                    if (isLoggedIn) {
-                        post_btn_group.visibility = View.VISIBLE
-                        if (TextUtils.isEmpty(p.replyUrl)) {
-                            post_btn_reply.visibility = View.GONE
-                        } else {
-                            post_btn_reply.visibility = View.VISIBLE
-                            post_btn_reply.setOnClickListener(this@PostViewHolder)
-                        }
-                        if (TextUtils.isEmpty(p.sign) || p.sign=="null") {
+                        post_btn_capture.visibility = View.VISIBLE
+                        post_btn_capture.setOnClickListener(this@PostViewHolder)
+                        post_btn_copy.setOnClickListener(this@PostViewHolder)
+                        if (TextUtils.isEmpty(p.sign)) {
                             sign_line.visibility = View.GONE
                             sign_text_view.visibility = View.GONE
                         } else {
-                            sign_line.visibility = View.VISIBLE
                             sign_text_view.visibility = View.VISIBLE
+                            sign_line.visibility = View.VISIBLE
                             sign_text_view.text = p.sign
                         }
-                        if (TextUtils.isEmpty(p.replyAddUrl)) {
-                            post_btn_thumb_up.visibility = View.GONE
+                        if (isLoggedIn) {
+                            if (TextUtils.isEmpty(p.replyUrl)) {
+                                post_btn_reply.visibility = View.GONE
+                            } else {
+                                post_btn_reply.visibility = View.VISIBLE
+                                post_btn_reply.setOnClickListener(this@PostViewHolder)
+                            }
+                            if (TextUtils.isEmpty(p.replyAddUrl)) {
+                                post_btn_thumb_up.visibility = View.GONE
+                            } else {
+                                post_btn_thumb_up.visibility = View.VISIBLE
+                                post_btn_thumb_up.setOnClickListener(this@PostViewHolder)
+                            }
                         } else {
-                            post_btn_thumb_up.visibility = View.VISIBLE
-                            post_btn_thumb_up.setOnClickListener(this@PostViewHolder)
+                            post_btn_thumb_up.visibility = View.GONE
+                            post_btn_reply.visibility = View.GONE
                         }
-                        post_btn_copy.setOnClickListener(this@PostViewHolder)
-                    } else {
-                        post_btn_group.visibility = View.GONE
+                        // fix issue occurs on some manufactures os, like MIUI
+                        content_text_view.setOnLongClickListener { true }
+                    } catch (e: Exception) {
+                        Timber.e(e)
                     }
-                    // fix issue occurs on some manufactures os, like MIUI
-                    content_text_view.setOnLongClickListener { true }
-                } catch (e: Exception) {
-                    Timber.e(e)
                 }
             }
         }
@@ -306,7 +309,7 @@ class ArticleAdapter(
                         reply_avatar.load(p.avatar) {
                             crossfade(true)
                             transformations(RoundedCornersTransformation(6.dpToPx(context)))
-                            placeholder(R.drawable.ic_avatar_m_2)
+                            placeholder(R.drawable.ic_launcher_foreground)
                             error(getAvatar())
                         }
                         reply_content_text_view.run {
@@ -334,8 +337,17 @@ class ArticleAdapter(
                             }
                             setHtml(p.content, htmlHttpImageGetter)
                         }
+                        if (TextUtils.isEmpty(p.sign)) {
+                            reply_sign_line.visibility = View.GONE
+                            reply_sign_text_view.visibility = View.GONE
+                        } else {
+                            reply_sign_text_view.visibility = View.VISIBLE
+                            reply_sign_line.visibility = View.VISIBLE
+                            reply_sign_text_view.text = p.sign
+                        }
+                        reply_btn_copy.setOnClickListener(this@ReplyViewHolder)
                         if (isLoggedIn) {
-                            reply_btn_group.visibility = View.VISIBLE
+                            //reply_btn_group.visibility = View.VISIBLE
                             if (TextUtils.isEmpty(p.replyUrl)) {
                                 reply_btn_reply.visibility = View.GONE
                             } else {
@@ -348,17 +360,9 @@ class ArticleAdapter(
                                 reply_btn_thumb_up.visibility = View.VISIBLE
                                 reply_btn_thumb_up.setOnClickListener(this@ReplyViewHolder)
                             }
-                            if (TextUtils.isEmpty(p.sign) || p.sign=="null") {
-                                reply_sign_line.visibility = View.GONE
-                                reply_sign_text_view.visibility = View.GONE
-                            } else {
-                                reply_sign_line.visibility = View.VISIBLE
-                                reply_sign_text_view.visibility = View.VISIBLE
-                                reply_sign_text_view.text = p.sign
-                            }
-                            reply_btn_copy.setOnClickListener(this@ReplyViewHolder)
                         } else {
-                            reply_btn_group.visibility = View.GONE
+                            reply_btn_reply.visibility = View.GONE
+                            reply_btn_thumb_up.visibility = View.GONE
                         }
                         // fix issue occurs on some manufactures os, like MIUI
                         reply_content_text_view.setOnLongClickListener { true }

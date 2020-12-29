@@ -28,7 +28,7 @@
             android:contentDescription="@null"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_avatar_m_2" />
+            tools:src="@drawable/ic_launcher_foreground" />
 
         <TextView
             android:id="@+id/reply_author_text_view"

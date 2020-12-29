@@ -99,7 +99,7 @@ class FollowListAdapter(
                 follow.avatar.let {
                     avatar.load(it) {
                         transformations(RoundedCornersTransformation(2.dpToPx(context)))
-                            .error(R.drawable.ic_avatar_m_5)
+                            .error(R.drawable.ic_launcher_foreground)
                     }
                 }
                 last_action.text = follow.lastAction

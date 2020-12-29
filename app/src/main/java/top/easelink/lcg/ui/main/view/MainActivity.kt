@@ -274,7 +274,6 @@ class MainActivity : TopActivity(), BottomNavigationView.OnNavigationItemSelecte
         }
     }
 
-
     private fun checkPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
             != PERMISSION_GRANTED

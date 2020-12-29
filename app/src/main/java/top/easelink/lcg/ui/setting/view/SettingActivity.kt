@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_settings.*
 import top.easelink.framework.topbase.TopActivity
+import com.tencent.bugly.beta.Beta
 import top.easelink.lcg.R
 import top.easelink.lcg.config.AppConfig
 import top.easelink.lcg.account.UserDataRepo
@@ -81,6 +82,7 @@ class SettingActivity : TopActivity() {
             }
         }
         check_update_btn.setOnClickListener {
+            Beta.checkUpgrade()
         }
         sync_favorites_switch.setOnCheckedChangeListener { _, isChecked ->
             

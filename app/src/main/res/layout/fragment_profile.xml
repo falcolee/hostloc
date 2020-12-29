@@ -30,7 +30,7 @@
             app:layout_constraintTop_toTopOf="@id/me_user_name"
             app:layout_constraintBottom_toBottomOf="@id/me_user_group"
             app:layout_constraintStart_toStartOf="parent"
-            tools:src="@drawable/ic_avatar_m_5"
+            tools:src="@drawable/ic_launcher_foreground"
             />
 
         <TextView

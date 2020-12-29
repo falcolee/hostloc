@@ -26,6 +26,8 @@ ext {
     roomVersion = '2.2.5'
     guavaVersion = '29.0-jre'
     lottieVersion = '3.4.1'
+    buglyVersion = '1.3.8'
+    buglyTinkerVersion = '1.9.6'
     eventbusVersion = '3.1.1'
     viewpager2 = '1.0.0'
 

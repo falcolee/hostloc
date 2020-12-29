@@ -72,13 +72,13 @@ class PopUpProfileDialog: DialogFragment() {
                 }
             }
         username.text = popUpInfo.userName
-        if (TextUtils.isEmpty(popUpInfo.group) || popUpInfo.group=="null") {
+        if (TextUtils.isEmpty(popUpInfo.group)) {
             group_text_view.visibility = View.GONE
         } else {
             group_text_view.visibility = View.VISIBLE
             group_text_view.text = popUpInfo.group
         }
-        if (TextUtils.isEmpty(popUpInfo.online) || popUpInfo.online=="null") {
+        if (TextUtils.isEmpty(popUpInfo.online)) {
             online_text_view.visibility = View.GONE
         } else {
             group_text_view.visibility = View.VISIBLE

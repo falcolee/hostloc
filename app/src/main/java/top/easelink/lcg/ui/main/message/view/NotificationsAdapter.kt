@@ -101,7 +101,7 @@ class NotificationsAdapter(
                 date_time.text = notification.dateTime
                 notification_avatar.load(notification.avatar) {
                     transformations(RoundedCornersTransformation(2.dpToPx(view.context)))
-                    placeholder(R.drawable.ic_avatar_m_5)
+                    placeholder(R.drawable.ic_launcher_foreground)
                 }
             }
         }
