@@ -12,8 +12,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import coil.transform.RoundedCornersTransformation
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_post_view.view.*
 import kotlinx.android.synthetic.main.item_reply_view.view.*
 import kotlinx.coroutines.GlobalScope
@@ -28,11 +27,11 @@ import top.easelink.framework.utils.convertViewToBitmap
 import top.easelink.framework.utils.dp2px
 import top.easelink.framework.utils.dpToPx
 import top.easelink.lcg.R
+import top.easelink.lcg.account.UserDataRepo.isLoggedIn
+import top.easelink.lcg.account.UserDataRepo.username
 import top.easelink.lcg.config.AppConfig
 import top.easelink.lcg.event.EVENT_CAPTURE_ARTICLE
 import top.easelink.lcg.event.sendEvent
-import top.easelink.lcg.account.UserDataRepo.isLoggedIn
-import top.easelink.lcg.account.UserDataRepo.username
 import top.easelink.lcg.ui.main.article.viewmodel.ArticleAdapterListener
 import top.easelink.lcg.ui.main.model.OpenArticleEvent
 import top.easelink.lcg.ui.main.model.OpenLargeImageViewEvent
@@ -51,6 +50,7 @@ import top.easelink.lcg.utils.saveImageToGallery
 import top.easelink.lcg.utils.showMessage
 import top.easelink.lcg.utils.toTimeStamp
 import java.util.*
+
 
 class ArticleAdapter(
     private val mListener: ArticleAdapterListener,
@@ -126,7 +126,11 @@ class ArticleAdapter(
     ) : BaseViewHolder(view), View.OnClickListener {
 
         private var post: Post? = null
-        private val htmlHttpImageGetter: Html.ImageGetter = HtmlCoilImageGetter(view.context, view.content_text_view, mFragment)
+        private val htmlHttpImageGetter: Html.ImageGetter = HtmlCoilImageGetter(
+            view.context,
+            view.content_text_view,
+            mFragment
+        )
 
         override fun onBind(position: Int) {
             post = mPostList[position]
@@ -163,11 +167,11 @@ class ArticleAdapter(
                                         it.putExtra(KEY_PROFILE_URL, p.profileUrl)
                                     })
                         }
-                        post_avatar.load(p.avatar) {
-                            lifecycle(mFragment)
-                            transformations(RoundedCornersTransformation(4.dpToPx(context)))
-                            error(R.drawable.ic_launcher_foreground)
-                        }
+                        Glide.with(this)
+                            .load(p.avatar)
+                            .error(getAvatar())
+                            .placeholder(R.drawable.ic_launcher_foreground)
+                            .into(post_avatar)
                         content_text_view.run {
                             if (AppConfig.articleHandlePreTag) {
                                 setClickablePreCodeSpan(ClickablePreCodeSpanImpl())
@@ -306,12 +310,11 @@ class ArticleAdapter(
                                     it.putExtra(KEY_PROFILE_URL, p.profileUrl)
                                 })
                         }
-                        reply_avatar.load(p.avatar) {
-                            crossfade(true)
-                            transformations(RoundedCornersTransformation(6.dpToPx(context)))
-                            placeholder(R.drawable.ic_launcher_foreground)
-                            error(getAvatar())
-                        }
+                        Glide.with(this)
+                            .load(p.avatar)
+                            .error(getAvatar())
+                            .placeholder(R.drawable.ic_launcher_foreground)
+                            .into(reply_avatar)
                         reply_content_text_view.run {
                             if (AppConfig.articleHandlePreTag) {
                                 setClickablePreCodeSpan(ClickablePreCodeSpanImpl())

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.load
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.dialog_post_preview.*
 import timber.log.Timber
 import top.easelink.framework.customview.htmltextview.HtmlCoilImageGetter
@@ -77,7 +78,7 @@ class PostPreviewDialog : TopDialog() {
                         author_text_view.text = it
                     })
                     mViewModel.avatar.observe(viewLifecycleOwner, Observer {
-                        post_avatar.load(it)
+                        Glide.with(this).load(it).into(post_avatar)
                     })
                     mViewModel.date.observe(viewLifecycleOwner, Observer {
                         date_text_view.text = it

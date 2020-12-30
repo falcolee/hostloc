@@ -14,7 +14,7 @@ object AppConfig {
     private const val CONFIG_ARTICLE_IN_WEBVIEW = "open_article_in_webview"
     private const val CONFIG_ARTICLE_SHOW_RECOMMEND_FLAG = "article_show_recommend_flag"
     private const val CONFIG_DEFAULT_SEARCH_ENGINE = "default_search_engine"
-    private const val CONFIG_AUTO_SIGN_IN = "auto_sign_in"
+    private const val CONFIG_AUTO_CHECK_UPDATE = "auto_check_update"
     private const val CONFIG_SYNC_FAVORITES = "sync_favorites"
 
 
@@ -55,9 +55,9 @@ object AppConfig {
         )
         set(value) = put(CONFIG_DEFAULT_SEARCH_ENGINE, value)
 
-    var autoSignEnable: Boolean
-        get() = get(CONFIG_AUTO_SIGN_IN, true)
-        set(value) = put(CONFIG_AUTO_SIGN_IN, value)
+    var autoCheckUpdate: Boolean
+        get() = get(CONFIG_AUTO_CHECK_UPDATE, true)
+        set(value) = put(CONFIG_AUTO_CHECK_UPDATE, value)
 
     var syncFavorites: Boolean
         get() = get(CONFIG_SYNC_FAVORITES, true)

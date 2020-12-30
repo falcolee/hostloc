@@ -127,6 +127,15 @@
             android:text="@string/app_setting"
             android:textSize="@dimen/sp_10"
             android:textColor="@color/gray" />
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:padding="@dimen/dp_12"
+            android:elevation="@dimen/dp_2"
+            android:background="@color/white"
+            android:visibility="gone"
+            android:id="@+id/auto_check_update_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/auto_check_update_on_start" />
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/check_update_btn"
             android:padding="@dimen/dp_12"

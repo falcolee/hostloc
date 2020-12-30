@@ -7,7 +7,7 @@ import top.easelink.lcg.event.*
 import java.util.*
 
 class SettingViewModel : ViewModel() {
-    val autoSignInEnable = MutableLiveData<Boolean>()
+    val autoCheckUpdateEnable = MutableLiveData<Boolean>()
     val syncFavoriteEnable = MutableLiveData<Boolean>()
     val searchEngineSelected = MutableLiveData<Int>()
     val openSearchResultInWebView = MutableLiveData<Boolean>()
@@ -17,7 +17,7 @@ class SettingViewModel : ViewModel() {
 
     fun init() {
         with(AppConfig) {
-            autoSignInEnable.value = autoSignEnable
+            autoCheckUpdateEnable.value = autoCheckUpdate
             syncFavoriteEnable.value = syncFavorites
             searchEngineSelected.value = defaultSearchEngine
             openSearchResultInWebView.value = searchResultShowInWebView

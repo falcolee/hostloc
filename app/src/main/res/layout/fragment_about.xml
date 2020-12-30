@@ -35,7 +35,30 @@
         android:clickable="true"
         android:text="@string/github_url"
         android:focusable="true" />
-
+    <TextView
+        android:id="@+id/issue_request_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColorLink="@color/light_blue"
+        android:text="@string/request_issue" />
+    <TextView
+        android:id="@+id/thanks_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColorLink="@color/light_blue"
+        android:text="@string/thanks_lcg" />
+    <TextView
+        android:id="@+id/original_github"
+        android:autoLink="web"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColorLink="@color/light_blue"
+        android:clickable="true"
+        android:text="@string/original_github"
+        android:focusable="true" />
     <com.airbnb.lottie.LottieAnimationView
         android:layout_marginTop="@dimen/dp_30"
         android:layout_gravity="center"

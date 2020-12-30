@@ -54,39 +54,28 @@ class ReplyPostViewModel : ViewModel() {
                     val reppid = selectFirst("input[name=reppid]").attr("value")
                     val reppost = selectFirst("input[name=reppost]").attr("value")
                     val formHash = selectFirst("input[name=formhash]").attr("value")
-                    var response = Jsoup
-                        .connect(CHECK_RULE_URL)
-                        .timeout(60 * 1000)
+                    val url = "${SERVER_BASE_URL}forum.php?mod=post&infloat=yes&action=reply" +
+                            "&fid=${queryMap["fid"]}&extra=${queryMap["extra"]}&tid=${queryMap["tid"]}&replysubmit=yes&inajax=1"
+                    val response = Jsoup
+                        .connect(url)
                         .cookies(getCookies())
-                        .method(Connection.Method.GET)
+                        .data(
+                            "formhash", formHash,
+                            "handlekey", handlekey,
+                            "noticeauthor", noticeauthor,
+                            "noticetrimstr", noticetrimstr,
+                            "noticeauthormsg", noticeauthormsg,
+                            "usesig", usesig,
+                            "reppid", reppid,
+                            "reppost", reppost,
+                            "subject", "",
+                            "message", content
+                        )
+                        .followRedirects(true)
+                        .method(Connection.Method.POST)
                         .execute()
-                    if (response.statusCode() in 200 until 300) {
-                        setCookies(response.cookies())
-                        val url = "${SERVER_BASE_URL}forum.php?mod=post&infloat=yes&action=reply" +
-                                "&fid=${queryMap["fid"]}&extra=${queryMap["extra"]}&tid=${queryMap["tid"]}&replysubmit=yes&inajax=1"
-                        response = Jsoup
-                            .connect(url)
-                            .cookies(getCookies())
-                            .data(
-                                "formhash", formHash,
-                                "handlekey", handlekey,
-                                "noticeauthor", noticeauthor,
-                                "noticetrimstr", noticetrimstr,
-                                "noticeauthormsg", noticeauthormsg,
-                                "usesig", usesig,
-                                "reppid", reppid,
-                                "reppost", reppost,
-                                "subject", "",
-                                "message", content
-                            )
-                            .postDataCharset("gbk")
-                            .method(Connection.Method.POST)
-                            .execute()
-                        setCookies(response.cookies())
-                        callback.invoke(response.statusCode() in 200 until 300)
-                    } else {
-                        Timber.e(response.body())
-                    }
+                    setCookies(response.cookies())
+                    callback.invoke(response.statusCode() in 200 until 300)
                 }
         } catch (e: Exception) {
             Timber.e(e)

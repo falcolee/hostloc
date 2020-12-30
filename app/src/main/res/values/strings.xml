@@ -75,6 +75,7 @@
     <string name="sync_favorites_instruction">（默认仅收藏到本地）</string>
     <string name="app_setting">应用</string>
     <string name="check_app_update">检查最新版本</string>
+    <string name="auto_check_update_on_start">启动时自动检查更新</string>
 
     <!--Me Fragment-->
     <string name="me_tab_title">个人页</string>
@@ -118,8 +119,11 @@
     <string name="version">"version"</string>
     <string name="github_title">Github源码地址</string>
     <string name="github_url">https://github.com/xiaogouxo/hostloc</string>
-    <string name="author_title">问题反馈邮箱</string>
+    <string name="author_title">反馈邮箱</string>
     <string name="author_email">skylzl001@163.com</string>
+    <string name="request_issue">问题或建议请到github提issue</string>
+    <string name="thanks_lcg">感谢LCG开源项目</string>
+    <string name="original_github">https://github.com/fabricezhang/lcg</string>
 
     <!--favorite fragment-->
     <string name="empty_favorite">收藏夹目前是空的。</string>

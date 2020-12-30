@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_conversation_view.view.*
 import kotlinx.android.synthetic.main.item_load_more_view.view.*
 import top.easelink.framework.base.BaseViewHolder
@@ -90,10 +91,7 @@ class ConversationListAdapter(
             view.apply {
                 date_time.text = conversation.lastMessageDateTime
                 conversation.avatar?.let {
-                    conversation_user_avatar.load(it) {
-                        transformations(RoundedCornersTransformation(2.dpToPx(context)))
-                        error(R.drawable.ic_launcher_foreground)
-                    }
+                    Glide.with(context).load(it).error(R.drawable.ic_launcher_foreground).into(conversation_user_avatar)
                 }
                 last_message.text = conversation.lastMessage
                 username.text = conversation.username

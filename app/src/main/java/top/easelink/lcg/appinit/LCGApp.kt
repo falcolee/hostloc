@@ -10,6 +10,7 @@ import top.easelink.lcg.BuildConfig
 import com.tencent.bugly.Bugly
 import com.tencent.bugly.beta.Beta
 import top.easelink.lcg.R
+import top.easelink.lcg.config.AppConfig
 
 
 class LCGApp : Application() {
@@ -29,12 +30,11 @@ class LCGApp : Application() {
     private fun initBulgy() {
         Bugly.init(
             applicationContext,
-            BuildConfig.BUGLY_APP_ID, true
+            BuildConfig.BUGLY_APP_ID, false
         )
         Beta.largeIconId = R.drawable.ic_launcher_foreground
         Beta.smallIconId = R.drawable.ic_launcher_foreground
         Beta.enableHotfix = false
-        Beta.autoCheckUpgrade = true;
     }
 
     companion object {
