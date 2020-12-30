@@ -6,13 +6,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import coil.transform.RoundedCornersTransformation
-import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_load_more_view.view.*
 import kotlinx.android.synthetic.main.item_notification_view.view.*
 import top.easelink.framework.base.BaseViewHolder
 import top.easelink.framework.customview.htmltextview.HtmlCoilImageGetter
-import top.easelink.framework.utils.dpToPx
 import top.easelink.lcg.R
 import top.easelink.lcg.ui.main.message.viewmodel.NotificationViewModel
 import top.easelink.lcg.ui.main.model.BaseNotification
@@ -100,7 +97,9 @@ class NotificationsAdapter(
                     linksClickable = false
                 }
                 date_time.text = notification.dateTime
-                Glide.with(context).load(notification.avatar).placeholder(R.drawable.ic_launcher_foreground).into(notification_avatar);
+                notification_avatar.load(notification.avatar) {
+                    placeholder(R.drawable.ic_launcher_foreground)
+                }
             }
         }
 

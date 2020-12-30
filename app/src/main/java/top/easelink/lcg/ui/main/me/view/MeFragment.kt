@@ -9,11 +9,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import coil.Coil
 import coil.load
-import coil.request.ImageRequest
-import coil.transform.RoundedCornersTransformation
-import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.cardview_me_notifications.*
 import kotlinx.android.synthetic.main.fragment_me.*
 import kotlinx.android.synthetic.main.layout_icon_button.view.*
@@ -22,7 +18,6 @@ import top.easelink.framework.topbase.ControllableFragment
 import top.easelink.framework.topbase.TopFragment
 import top.easelink.framework.utils.addFragmentInActivity
 import top.easelink.framework.utils.addFragmentInFragment
-import top.easelink.framework.utils.dpToPx
 import top.easelink.lcg.R
 import top.easelink.lcg.account.AccountManager
 import top.easelink.lcg.ui.main.articles.view.FavoriteArticlesFragment
@@ -92,7 +87,10 @@ class MeFragment : TopFragment(), ControllableFragment {
             me_anwser_rate.text = info.enthusiasticValue
             me_credit.text = info.credit
             info.avatarUrl?.let {
-                Glide.with(this).load(it).error(getAvatar()).into(me_user_avatar)
+                me_user_avatar.load(it) {
+                    lifecycle(viewLifecycleOwner)
+                    error(getAvatar())
+                }
             }
         }
     }

@@ -12,7 +12,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import coil.load
 import kotlinx.android.synthetic.main.item_post_view.view.*
 import kotlinx.android.synthetic.main.item_reply_view.view.*
 import kotlinx.coroutines.GlobalScope
@@ -25,7 +25,6 @@ import top.easelink.framework.customview.htmltextview.HtmlCoilImageGetter
 import top.easelink.framework.threadpool.Main
 import top.easelink.framework.utils.convertViewToBitmap
 import top.easelink.framework.utils.dp2px
-import top.easelink.framework.utils.dpToPx
 import top.easelink.lcg.R
 import top.easelink.lcg.account.UserDataRepo.isLoggedIn
 import top.easelink.lcg.account.UserDataRepo.username
@@ -167,11 +166,10 @@ class ArticleAdapter(
                                         it.putExtra(KEY_PROFILE_URL, p.profileUrl)
                                     })
                         }
-                        Glide.with(this)
-                            .load(p.avatar)
-                            .error(getAvatar())
-                            .placeholder(R.drawable.ic_launcher_foreground)
-                            .into(post_avatar)
+                        post_avatar.load(p.avatar) {
+                            lifecycle(mFragment)
+                            error(R.drawable.ic_launcher_foreground)
+                        }
                         content_text_view.run {
                             if (AppConfig.articleHandlePreTag) {
                                 setClickablePreCodeSpan(ClickablePreCodeSpanImpl())
@@ -310,11 +308,11 @@ class ArticleAdapter(
                                     it.putExtra(KEY_PROFILE_URL, p.profileUrl)
                                 })
                         }
-                        Glide.with(this)
-                            .load(p.avatar)
-                            .error(getAvatar())
-                            .placeholder(R.drawable.ic_launcher_foreground)
-                            .into(reply_avatar)
+                        reply_avatar.load(p.avatar) {
+                            crossfade(true)
+                            placeholder(R.drawable.ic_launcher_foreground)
+                            error(getAvatar())
+                        }
                         reply_content_text_view.run {
                             if (AppConfig.articleHandlePreTag) {
                                 setClickablePreCodeSpan(ClickablePreCodeSpanImpl())

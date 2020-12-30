@@ -12,8 +12,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import coil.load
-import coil.transform.RoundedCornersTransformation
-import com.bumptech.glide.Glide
 import com.draggable.library.extension.ImageViewerHelper
 import kotlinx.android.synthetic.main.dialog_profile.*
 import kotlinx.android.synthetic.main.item_reply_view.view.*
@@ -104,10 +102,9 @@ class PopUpProfileDialog: DialogFragment() {
             WebViewActivity.startWebViewWith(SERVER_BASE_URL + popUpInfo.profileUrl, it.context)
         }
 
-        Glide.with(this)
-            .load(popUpInfo.imageUrl)
-            .error(getAvatar())
-            .into(profile_avatar)
+        profile_avatar.load(popUpInfo.imageUrl) {
+            error(getAvatar())
+        }
         profile_avatar.setOnClickListener {
             val imageUrl = popUpInfo.imageUrl.replace("small","big").replace("middle","big")
             if (!TextUtils.isEmpty(imageUrl)){

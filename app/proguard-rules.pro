@@ -120,22 +120,6 @@
 -dontwarn com.tencent.bugly.**
 -keep public class com.tencent.bugly.**{*;}
 
-# tinker混淆规则
--dontwarn com.tencent.tinker.**
--keep class com.tencent.tinker.** { *; }
-
 -keep class android.support.**{*;}
 #屏蔽某些检查，否则编译不过
 -ignorewarnings
-
--keep public class * implements com.bumptech.glide.module.GlideModule
--keep class * extends com.bumptech.glide.module.AppGlideModule {
- <init>(...);
-}
--keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
-  **[] $VALUES;
-  public *;
-}
--keep class com.bumptech.glide.load.data.ParcelFileDescriptorRewinder$InternalRewinder {
-  *** rewind();
-}
