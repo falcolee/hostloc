@@ -18,9 +18,9 @@
 
 ## 应用截图
 
-![screenshot for Android](https://github.com/xiaogouxo/hostloc/blob/master/screenshot/shot1.png)
+![screenshot for Android](https://p.pstatp.com/origin/138f400003d8063219ce6)
 
-![screenshot for Android](https://github.com/xiaogouxo/hostloc/blob/master/screenshot/shot2.png)
+![screenshot for Android](https://p.pstatp.com/origin/ffdd00032ada729ef4d0)
 
 ## 编译说明
 ### 1. 下载项目
