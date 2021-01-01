@@ -31,9 +31,12 @@ $ git clone https://github.com/xiaogouxo/hostloc.git
 ### 2.导入Android Studio build apk
 
 ## 应用下载
-APK下载 蓝奏云
- - [V1.0.0](https://wwa.lanzous.com/ian5Ajwc6wb)
- 
+Github Release： [V1.0.0](https://github.com/xiaogouxo/hostloc/releases/download/v1.0.0/hostloc-1.0.0-20201231-1754.apk)
+
+国内 蓝奏云 : [V1.0.0](https://wwa.lanzous.com/ian5Ajwc6wb)
+
+或者扫描二维码下载：
+![](https://p.pstatp.com/origin/137d30001bdb403f7e863)
 ## 其它
 如果对这个项目有任何建议或意见，欢迎在 Issues 提出。
 如果你喜欢这个项目，欢迎给我一个 star，这对我来说是莫大的鼓励与认可。
